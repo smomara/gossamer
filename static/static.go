@@ -37,6 +37,7 @@ func ServeStaticFiles(r *router.Router, urlPrefix, dirPath string) {
 			contentType = "application/octet-stream"
 		}
 		w.Header()["Content-Type"] = contentType
+		w.Header()["X-Content-Type-Options"] = "nosniff"
 		w.WriteHeader(200)
 
 		log.Printf("Serving file: %s with content type: %s\n", filePath, contentType)
